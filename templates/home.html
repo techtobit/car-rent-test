@@ -36,7 +36,6 @@
 <div class="d-flex flex-wrap px-4">
   <div class="col-2 bg-white px-0" style="position: sticky; top: 0; z-index: 1020;">
     <ul class="list-group">
-      {% if brand %}
         {% for name in brand  %}
         <a href="{% url 'brand_wise_car' name.slug %}" class="list-group-item d-flex justify-content-between align-items-center">
           {{name.brand_name }}
@@ -44,9 +43,6 @@
         </a>
         {% endfor %}
         <a href="{% url 'home' %}" type="button" class="btn btn-primary mt-2">Reset</a>
-      {% else %}
-        <li class="list-group-item text-center">No brand available</li>
-      {% endif %}
     </ul>
   </div>
 
