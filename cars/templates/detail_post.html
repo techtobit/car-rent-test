@@ -19,7 +19,7 @@
             {% if user.is_authenticated %}
             <form method="post" action="{% url 'buy_car' object.id %}">
                 {% csrf_token %}
-                <button type="submit" name='buy_now' class="btn btn-primary mt-2list-group-item d-flex justify-content-between align-items-center" >
+                <button type="submit" name='buy_now' class="btn btn-primary mt-2 list-group-item d-flex justify-content-between align-items-center" >
                     Rent Car
                 </button>
             </form>
