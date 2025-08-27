@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="d-flex flex-column">
+<div class="container col-10 py-5 d-flex flex-column justify-content-center">
+    <div class="card m-2">
+        <div class="card-body">
+            <img src="{{object.car_image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title fw-bold text-uppercase gap-2">
+                {{object.car_name}}
+                </h5>
+            <p class="card-text btn btn-sm btn-light disabled">Brand : {{object.car_brand}}</p>
+            <div class="d-flex gap-2">
+                <p class="btn btn-sm btn-primary disabled">Quantity :{{object.quantity}}</p>
+                <p class="btn btn-sm btn-warning disabled ">Price $:{{object.price}} USD</p>
+            </div>
+            <p class="card-text">{{object.description }}</p>
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'buy_car' object.id %}">
+                {% csrf_token %}
+                <button type="submit" name='buy_now' class="btn btn-primary mt-2list-group-item d-flex justify-content-between align-items-center" >
+                    Rent Car
+                </button>
+            </form>
+                {% comment %} <button onClick='location.href='{% url 'buy_view' %} class='btn btn-sm btn-success'>Buy Car</button> {% endcomment %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+<br/>
+<div class="card m-2">
+    <h5 class="p-3">Total Comments : {{comments | length}}</h5>
+    {% for comment in comments %}
+  <div class="card-body border m-2">
+        <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
+        <p>{{comment.body}}</p>
+    </div>
+    {% endfor %}
+</div>
+<div class="card m-2">
+    <div class="card-body">
+        <form method="post">
+            <h1>Add Comment</h1>
+            {% csrf_token %}
+            {{comment_form | crispy}}
+
+            <button name='add_comment' class="btn btn-warning">Submit</button>
+    </div>
+</div>
+</div>
+
+{% endblock %}
