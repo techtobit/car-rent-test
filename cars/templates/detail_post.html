@@ -19,11 +19,9 @@
             {% if user.is_authenticated %}
             <form method="post" action="{% url 'buy_car' object.id %}">
                 {% csrf_token %}
-                <button type="submit" name='buy_now' class="btn btn-primary mt-2 list-group-item d-flex justify-content-between align-items-center" >
-                    Rent Car
-                </button>
+                <button type="submit" name='buy_now' class="btn btn-primary">Rent Car</button>
             </form>
-                {% comment %} <button onClick='location.href='{% url 'buy_view' %} class='btn btn-sm btn-success'>Buy Car</button> {% endcomment %}
+                {% comment %} <button onClick='location.href='{% url 'buy_view' %} class='btn btn-sm btn-success'>Rent car Car</button> {% endcomment %}
             {% endif %}
         </div>
     </div>

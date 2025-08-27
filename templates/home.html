@@ -32,9 +32,9 @@
 ------------------Car List Page------------------- 
 {% endcomment %}
 
-
-<div class="d-flex flex-wrap px-4">
-  <div class="col-2 bg-white px-0" style="position: sticky; top: 0; z-index: 1020;">
+1
+<div class="row px-4" style="height: 80vh;">
+  <div class="col-2 bg-white px-0 sticky-top h-100" style="top: 0; z-index: 1020; overflow-y: auto;">
     <ul class="list-group">
         {% for name in brand  %}
         <a href="{% url 'brand_wise_car' name.slug %}" class="list-group-item d-flex justify-content-between align-items-center">
@@ -46,26 +46,22 @@
     </ul>
   </div>
 
-    <div class="col-10 d-flex flex-wrap gap-4 px-4">
-      {% for car in data  %}
-      <div class="card" style="width: 20rem;">
-          <img src="{{car.car_image.url}}" style="height:14rem; object-fit:cover;" class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title fw-bold text-uppercase gap-2">
-                {% comment %} <a href="{% url 'car_details' car.id %}" class="text-decoration-none text-dark">{{car.car_name}}</a>
-              
-              </h5> {% endcomment %}
-              <h5 class="card-title"><a href="{% url 'detail_post' car.id %}" class="text-decoration-none text-dark">{{car.car_name}}</a></h5>
-              <p class="card-text btn btn-sm btn-light disabled">Brand : {{car.car_brand}}</p>
-              <div class="d-flex gap-2">
-                  <p class="btn btn-sm btn-primary disabled">Quantity :{{car.quantity}}</p>
-                  <p class="btn btn-sm btn-warning disabled ">Price : ${{car.price}} /Day</p>
-              </div>
-              <p class="card-text">{{car.description | truncatewords:30}}</p>
-          </div>
-      </div>
-      {% endfor %}
+  <div class="col-10 d-flex flex-wrap gap-4 px-4" style="height: 100%; overflow-y: auto;">
+    {% for car in data  %}
+    <div class="card" style="width: 20rem;">
+        <img src="{{car.car_image.url}}" style="height:14rem; object-fit:cover;" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'detail_post' car.id %}" class="text-decoration-none text-dark">{{car.car_name}}</a></h5>
+            <p class="card-text btn btn-sm btn-light disabled">Brand : {{car.car_brand}}</p>
+            <div class="d-flex gap-2">
+                <p class="btn btn-sm btn-primary disabled">Quantity :{{car.quantity}}</p>
+                <p class="btn btn-sm btn-warning disabled ">Price : ${{car.price}} /Day</p>
+            </div>
+            <p class="card-text">{{car.description | truncatewords:30}}</p>
+        </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 
 {% endblock content %}
